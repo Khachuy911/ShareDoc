@@ -1,12 +1,22 @@
 const project = require("../Models/projectModel");
+const projectDetail = require("../Models/projectDetailModel")
 const asyncHandle = require("../Middleware/asyncHandle");
 const errorResponse = require("../Helper/errorResponse");
+const uploadFiles = require("../Common/downloadFile");
 module.exports = {
     create: asyncHandle(async(req, res, next)=>{
         const data = await project.create(req.body);
+        req.files.forEach(async ele => {
+            let path = ele.path;
+            let newPath = path.split("\\");
+            req.body.path = newPath.join("/");
+            req.body.pro = data._id;
+            req.body.typeFile = ele.mimetype;
+            const detail = await projectDetail.create(req.body);
+        });        
         res.status(200).json({
-            status: "success",
-            data: "Create project success."            
+            status:"success",
+            data: "create project success"
         })
     }),
     get: asyncHandle(async(req, res, next)=>{
@@ -49,6 +59,9 @@ module.exports = {
             status: "success",
             data: "edit project success."            
         })
+    }),
+    download: asyncHandle(async(req, res, next)=>{
+        uploadFiles(projectDetail, req.query.id, res);
     })
 
 }

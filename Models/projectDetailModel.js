@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const projectDetailSchema = new Schema({
-    project:{
+    pro:{
         type:String,
         ref:"project"
     },
-    typeFile:{
+    mimetype:{
         type:String,
-        require:[true, "typeFile empty"]
+        require:[true, "mimefile project empty"]
     },
     path:{
         type:String,

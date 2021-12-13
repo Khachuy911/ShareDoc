@@ -5,9 +5,9 @@ const documentDetailSchema = new Schema({
         type:String,
         ref:"document"
     },
-    typeFile:{
+    mimetype:{
         type:String,
-        require:[true, "typeFile empty"]
+        required:[true, "mimetype document empty"]
     },
     path:{
         type:String,

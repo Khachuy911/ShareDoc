@@ -2,7 +2,9 @@ const document = require("../Models/documentModel");
 const documentDetail = require("../Models/documentDetailModel");
 const asyncHandle = require("../Middleware/asyncHandle");
 const errorResponse = require("../Helper/errorResponse");
-
+const path = require("path");
+const fs = require("promise-fs");
+const uploadFiles = require("../Common/downloadFile");
 module.exports = {
     create: asyncHandle(async(req, res, next)=>{
         const data = await document.create(req.body);
@@ -11,6 +13,7 @@ module.exports = {
             let newPath = path.split("\\");
             req.body.path = newPath.join("/");
             req.body.doc = data._id;
+            req.body.mimetype = ele.mimetype;
             req.body.typeFile = ele.mimetype;
             const detail = await documentDetail.create(req.body);
         });        
@@ -31,7 +34,9 @@ module.exports = {
     }),
     getDetail: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;
-        const data = await document.findById(id);
+        const data = await documentDetail.find({doc: id}).populate({
+            path:"doc",
+        });
         if(!data){
             return next(new errorResponse(401,"data empty"));
         }
@@ -59,6 +64,9 @@ module.exports = {
             status: "success",
             data: "edit document success."            
         })
+    }),
+    download: asyncHandle(async(req, res, next)=>{
+        uploadFiles(documentDetail, req.query.id, res);
     })
 
 }

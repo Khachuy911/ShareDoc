@@ -3,6 +3,7 @@ const Route = express.Router();
 const documentController = require("../Controllers/documentController");
 const upload = require("../Models/uploadModel");
 
+Route.get("/download/", documentController.download)
 Route.route("/")
                 .get(documentController.get)
                 .post(upload.array("docDetail", 10), documentController.create)

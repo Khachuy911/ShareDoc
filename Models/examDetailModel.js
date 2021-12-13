@@ -5,9 +5,9 @@ const examDetailSchema = new Schema({
         type:String,
         ref:"exam"
     },
-    typeFile:{
+    mimetype:{
         type:String,
-        require:[true, "typeFile empty"]
+        require:[true, "mimefile exam empty"]
     },
     path:{
         type:String,
