@@ -1,15 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const client = require("../Config/redis");
 const userSchema = new Schema({
   email:{
       type: String,
       required: [true, "Email empty"],
-      unique: [true,"Email exists"]
+      unique: [true,"Email is existed"]
   },
   password:{
       type: String,
-      required: [true, "password empty"]
+      required: [true, "password empty"],
+      select: false
   },
   confirmPw:{
       type:String,
@@ -26,7 +29,8 @@ const userSchema = new Schema({
   },
   phone:{
       type: Number,
-      unique: [true, "phone empty"],
+      required: [true, "phone empty"],
+      unique: [true, "phone number is existed"]
   },
   avatar:{
       type: String,
@@ -34,9 +38,6 @@ const userSchema = new Schema({
   name:{
       type: String,
       required: [true, "name empty"]
-  },
-  favorite:{
-      type: String,
   },
   birdDay:{
       type: Date,
@@ -51,4 +52,29 @@ const userSchema = new Schema({
 },{
     timestamp : true,
 });
+
+
+userSchema.pre("save", async function(next){
+    if(!this.isModified('password')) next();
+    this.password = await bcrypt.hash(this.password, 12);
+    this.confirmPw = undefined;
+    next();
+})
+
+userSchema.methods.signToken = function(){
+    return jwt.sign({id: this._id}, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRES_IN
+    })
+}
+userSchema.methods.signRefreshToken = async function(){
+    const refreshToken = await jwt.sign({id: this._id}, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_REFRESH_EXPIRES_IN
+    })
+    await client.set(`${this._id}`, refreshToken);
+    return refreshToken;
+}
+userSchema.methods.matchPassword = function(password, hashPassword){
+    return bcrypt.compare(password, hashPassword);
+}
+
 module.exports = mongoose.model('user', userSchema);
