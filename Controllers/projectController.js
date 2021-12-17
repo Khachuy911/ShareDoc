@@ -14,7 +14,7 @@ module.exports = {
             req.body.typeFile = ele.mimetype;
             const detail = await projectDetail.create(req.body);
         });        
-        res.status(200).json({
+        res.status(201).json({
             status:"success",
             data: "create project success"
         })

@@ -14,7 +14,7 @@ module.exports = {
             req.body.mimetype = ele.mimetype;
             const detail = await examDetail.create(req.body);
         });        
-        res.status(200).json({
+        res.status(201).json({
             status:"success",
             data: "create exam success"
         })

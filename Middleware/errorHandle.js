@@ -17,7 +17,7 @@ function errorHandle(err, req, res, next){
   if (err.name === "CastError") {
     // Nhập địa chỉ lung tung
     const message = "not found link";
-    error = new errorResponse(400, message);
+    error = new errorResponse(404, message);
   }
   if (err.name === "JsonWebTokenError") {
     const message = "jwt malformed";

@@ -42,12 +42,6 @@ const userSchema = new Schema({
   birdDay:{
       type: Date,
       required:[true, "bird day empty"]
-  },
-  reset_Pw:{
-      type: String
-  },
-  Reset_Pw_ExpiresIn:{
-      type: Date
   }
 },{
     timestamp : true,
@@ -75,6 +69,11 @@ userSchema.methods.signRefreshToken = async function(){
 }
 userSchema.methods.matchPassword = function(password, hashPassword){
     return bcrypt.compare(password, hashPassword);
+}
+userSchema.methods.signResetToken = function(){
+    return jwt.sign({id:this._id}, process.env.JWT_SECRET,{
+        expiresIn: process.env.JWT_RESET_EXPIRES_IN
+    })
 }
 
 module.exports = mongoose.model('user', userSchema);
