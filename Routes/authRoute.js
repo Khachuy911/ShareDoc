@@ -3,8 +3,8 @@ const Route = express.Router();
 const authController = require("../Controllers/authController");
 const protect = require("../Middleware/protect");
 
+Route.post("/reset/:token", authController.resetPW);
 Route.post("/forgotPassword", authController.forgotPw);
-Route.get("/getMe",protect.protect, authController.getMe);
 Route.post("/accessToken", authController.accessRefreshToken);
 Route.post("/signup", authController.signup);
 Route.post("/login", authController.login);

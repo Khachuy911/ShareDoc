@@ -29,15 +29,6 @@ module.exports = {
             refreshToken
         })
     }),
-    getMe: asyncHandle(async(req, res, next)=>{
-        const id = req.user;
-        const user = await users.findOne({id});
-        if(!user) return next(new errorRespose(400, "user invalid"));
-        res.status(200).json({
-            status:"success",
-            user
-        })
-    }),
     accessRefreshToken: asyncHandle(async(req, res, next)=>{
         const {refreshToken} = req.body;
         const decode = await jwt.verify(refreshToken, process.env.JWT_SECRET);
@@ -54,7 +45,7 @@ module.exports = {
         const user = await users.findOne({email});
         if(!user) return next(new errorRespose(400, "user invalid"));
         const reset = await user.signResetToken();
-        const link = `${req.protocol}://${req.get("host")}/api/v1/auth/forgotPassword/${reset}`;
+        const link = `${req.protocol}://${req.get("host")}/api/v1/auth/reset/${reset}`;
         // const option = {
         //     email: email,
         //     link: link
@@ -65,5 +56,20 @@ module.exports = {
             // message: `Check your email: ${email}`,
             data: link
         })
-    })
+    }),
+    resetPW: asyncHandle(async(req, res, next)=>{
+        const {token} = req.params;
+        const {password, confirmPw} = req.body;
+        if(!token) return next(new errorRespose(401, "token invalid"));
+        const encode = await jwt.verify(token, process.env.JWT_RESET);
+        const user = await users.findById(encode.id);
+        if(!user) return next(new errorRespose(400, "user invalid"));
+        user.password = password;
+        user.confirmPw = confirmPw;
+        await user.save();
+        res.status(200).json({
+            status:"success",
+            message: "Reset password successfully"
+        })
+    }),
 }

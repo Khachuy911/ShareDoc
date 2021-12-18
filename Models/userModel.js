@@ -71,7 +71,7 @@ userSchema.methods.matchPassword = function(password, hashPassword){
     return bcrypt.compare(password, hashPassword);
 }
 userSchema.methods.signResetToken = function(){
-    return jwt.sign({id:this._id}, process.env.JWT_SECRET,{
+    return jwt.sign({id:this._id}, process.env.JWT_RESET,{
         expiresIn: process.env.JWT_RESET_EXPIRES_IN
     })
 }

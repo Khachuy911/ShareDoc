@@ -14,7 +14,6 @@ module.exports = {
             req.body.path = newPath.join("/");
             req.body.doc = data._id;
             req.body.mimetype = ele.mimetype;
-            req.body.typeFile = ele.mimetype;
             const detail = await documentDetail.create(req.body);
         });        
         res.status(201).json({
