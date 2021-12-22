@@ -2,11 +2,11 @@ const document = require("../Models/documentModel");
 const documentDetail = require("../Models/documentDetailModel");
 const asyncHandle = require("../Middleware/asyncHandle");
 const errorResponse = require("../Helper/errorResponse");
-const path = require("path");
-const fs = require("promise-fs");
 const uploadFiles = require("../Common/downloadFile");
 module.exports = {
     create: asyncHandle(async(req, res, next)=>{
+        req.body.user = req.user.id;
+        req.body.subject = req.params.id;
         const data = await document.create(req.body);
         req.files.forEach(async ele => {
             let path = ele.path;
@@ -22,7 +22,13 @@ module.exports = {
         })
     }),
     get: asyncHandle(async(req, res, next)=>{
-        const data = await document.find();
+        const data = await document.find().populate([{
+            path:"user",            
+            select: "name"
+        },{
+            path:"subject",
+            select: "name"
+        }])
         if(!data){
             return next(new errorResponse(401,"data empty"));
         }
@@ -47,6 +53,7 @@ module.exports = {
     delete: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;
         const data = await document.findByIdAndDelete(id);
+        await documentDetail.deleteMany({doc: id});
         res.status(200).json({
             status: "success",
             data: "delete document success."            

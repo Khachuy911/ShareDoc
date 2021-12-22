@@ -5,13 +5,15 @@ const errorResponse = require("../Helper/errorResponse");
 const uploadFiles = require("../Common/downloadFile");
 module.exports = {
     create: asyncHandle(async(req, res, next)=>{
+        req.body.user = req.user.id;
+        req.body.subject = req.params.id;
         const data = await project.create(req.body);
         req.files.forEach(async ele => {
             let path = ele.path;
             let newPath = path.split("\\");
             req.body.path = newPath.join("/");
             req.body.pro = data._id;
-            req.body.typeFile = ele.mimetype;
+            req.body.mimetype = ele.mimetype;
             const detail = await projectDetail.create(req.body);
         });        
         res.status(201).json({
@@ -20,7 +22,13 @@ module.exports = {
         })
     }),
     get: asyncHandle(async(req, res, next)=>{
-        const data = await project.find();
+        const data = await project.find().populate([{
+            path:"user",            
+            select: "name"
+        },{
+            path:"subject",
+            select: "name"
+        }]);
         if(!data){
             return next(new errorResponse(401,"data empty"));
         }
@@ -31,7 +39,9 @@ module.exports = {
     }),
     getDetail: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;
-        const data = await project.findById(id);
+        const data = await projectDetail.find({pro: id}).populate({
+            path:"pro",
+        });;
         if(!data){
             return next(new errorResponse(401,"data empty"));
         }
@@ -43,6 +53,7 @@ module.exports = {
     delete: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;
         const data = await project.findByIdAndDelete(id);
+        await projectDetail.deleteMany({pro: id});
         res.status(200).json({
             status: "success",
             data: "delete project success."            

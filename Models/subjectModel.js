@@ -9,7 +9,7 @@ const subjectSchema = new Schema({
         type: String
     }
 },{
-    timestamp: true
+    timestamps: true
 })
 
 module.exports = mongoose.model('subject', subjectSchema);

@@ -44,7 +44,7 @@ const userSchema = new Schema({
       required:[true, "bird day empty"]
   }
 },{
-    timestamp : true,
+    timestamps : true,
 });
 
 

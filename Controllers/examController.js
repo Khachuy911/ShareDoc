@@ -5,6 +5,8 @@ const errorResponse = require("../Helper/errorResponse");
 const uploadFiles = require("../Common/downloadFile");
 module.exports = {
     create: asyncHandle(async(req, res, next)=>{
+        req.body.user = req.user.id;
+        req.body.subject = req.params.id;
         const data = await exam.create(req.body);
         req.files.forEach(async ele => {
             let path = ele.path;
@@ -20,7 +22,13 @@ module.exports = {
         })
     }),
     get: asyncHandle(async(req, res, next)=>{
-        const data = await exam.find();
+        const data = await exam.find().populate([{
+            path:"user",            
+            select: "name"
+        },{
+            path:"subject",
+            select: "name"
+        }]);
         if(!data){
             return next(new errorResponse(401,"data empty"));
         }
@@ -45,6 +53,7 @@ module.exports = {
     delete: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;
         const data = await exam.findByIdAndDelete(id);
+        await examDetail.deleteMany({ex: id});
         res.status(200).json({
             status: "success",
             data: "delete exam success."            
