@@ -295,7 +295,7 @@
                         <td width="20px"><%= i %></td>
                         <td width="250px"><%= data[i].name %></td>
                         <td width="450px"><%= data[i].introduce %></td>
-                        <td width="200px"><a href="http://localhost:5000/<%=data[i].user.avatar%>"><img src="http://localhost:5000/<%=data[i].user.avatar%>" alt="" width="25" height="25" class="d-inline-block align-text-top"></a> <%= data[i].user.name %></td>
+                        <td width="200px"><a href="/<%=data[i].user.avatar%>"><img src="/<%=data[i].user.avatar%>" alt="" width="25" height="25" class="d-inline-block align-text-top"></a> <%= data[i].user.name %></td>
                         <td width="100px"><%= data[i].publish_Year %></td>
                         <td><a href="/document/detailDoc/<%= data[i].id%>"><button type="button" class="btn btn-primary">Truy cập</button></a> </td>
                     </tr>
