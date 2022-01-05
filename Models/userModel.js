@@ -60,13 +60,13 @@ userSchema.methods.signToken = function(){
         expiresIn: process.env.JWT_EXPIRES_IN
     })
 }
-userSchema.methods.signRefreshToken = async function(){
-    const refreshToken = await jwt.sign({id: this._id}, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_REFRESH_EXPIRES_IN
-    })
-    await client.set(`${this._id}`, refreshToken);
-    return refreshToken;
-}
+// userSchema.methods.signRefreshToken = async function(){
+//     const refreshToken = await jwt.sign({id: this._id}, process.env.JWT_SECRET, {
+//         expiresIn: process.env.JWT_REFRESH_EXPIRES_IN
+//     })
+//     await client.set(`${this._id}`, refreshToken);
+//     return refreshToken;
+// }
 userSchema.methods.matchPassword = function(password, hashPassword){
     return bcrypt.compare(password, hashPassword);
 }

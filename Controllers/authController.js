@@ -12,7 +12,7 @@ module.exports = {
     signup: asyncHandle(async(req, res, next)=>{
         const user = await users.create(req.body);
         const token = user.signToken();
-        const refreshToken = await user.signRefreshToken();
+        //const refreshToken = await user.signRefreshToken();
         // res.status(200).json({
         //     status:"success",
         //     token,
@@ -37,7 +37,7 @@ module.exports = {
         }
         // return next(new errorRespose(400, "email or password not correct"));
         const token = user.signToken();
-        const refreshToken = await user.signRefreshToken();
+        //const refreshToken = await user.signRefreshToken();
         // res.status(200).json({
         //     status:"success",
         //     token,
