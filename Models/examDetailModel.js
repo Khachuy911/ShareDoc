@@ -9,6 +9,10 @@ const examDetailSchema = new Schema({
         type:String,
         require:[true, "mimefile exam empty"]
     },
+    name:{
+        type:String,  
+        required:[true, "Tên không được để trống"]  
+    },
     path:{
         type:String,
         require:[true, "path exam empty"]

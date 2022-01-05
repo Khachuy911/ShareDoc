@@ -11,7 +11,7 @@ const projectSchema = new Schema({
     },
     name:{
         type: String,
-        required: [true, "name project empty"]
+        required: [true, "Tên không được để trống"]
     },
     Download:{
         type: Number,
@@ -19,11 +19,11 @@ const projectSchema = new Schema({
     },
     introduce: {
         type: String,
-        required: [true, "introduce empty"]
+        required: [true, "Chi tiết tài liệu không được để trống"]
     },
     publish_Year:{
         type: String,
-        required:[true, "publish year empty"]
+        required:[true, "Năm xuất bản không được để trống"]
     }
 },{
     timestamp: true
