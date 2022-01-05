@@ -49,7 +49,7 @@ module.exports = {
     }),
     logout: asyncHandle(async(req, res, next)=>{
         res.clearCookie("Authorization");
-        res.redirect(process.env.API + "/auth/login");
+        res.redirect("/auth/login");
     }),
     accessRefreshToken: asyncHandle(async(req, res, next)=>{
         const {refreshToken} = req.body;
