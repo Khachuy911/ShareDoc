@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function connect (){
     try {
-        await mongoose.connect(process.env.URL_MONGOOSE);
+        await mongoose.connect(process.env.URL_MONGOOSE_ONLINE);
         console.log("Connect with data successfully");
     } catch (error) {
         console.log("Connect with data fail !");
