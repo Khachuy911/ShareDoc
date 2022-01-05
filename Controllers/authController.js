@@ -73,7 +73,7 @@ module.exports = {
         // if(!user) return next(new errorRespose(400, "user invalid"));
         if(!user) return res.render("../Views/forgotPw.ejs", {count})
         const reset = await user.signResetToken();
-        const link = `${req.protocol}://${req.get("host")}/api/v1/auth/reset/${reset}`;
+        const link = `${req.protocol}://${req.get("host")}/auth/reset/${reset}`;
         res.redirect("https://mail.google.com/mail/u/0/#inbox")
         const option = {
             email: email,
