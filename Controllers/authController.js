@@ -20,7 +20,7 @@ module.exports = {
         // })
         // res.setHeader("Authorization", token)
         res.cookie("Authorization", token);
-        res.redirect(`${process.env.API}/subject/`);
+        res.redirect(`/`);
     }), 
     getLogin:asyncHandle(async(req, res, next)=>{
         let count ={err:0};
@@ -45,7 +45,7 @@ module.exports = {
         // })         
         res.setHeader("Authorization", token)
         res.cookie("Authorization", token);
-        res.redirect(`${process.env.API}/subject/`);
+        res.redirect(`/`);
     }),
     logout: asyncHandle(async(req, res, next)=>{
         res.clearCookie("Authorization");

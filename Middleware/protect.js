@@ -12,7 +12,7 @@ module.exports.protect = asyncHandle(async(req, res, next)=>{
             token = req.cookies.Authorization;
     // if(!token) return next(new errorRespose(400, "You are not login"));
     let count ={err:0};
-    if(!token) return res.redirect(process.env.API + "/auth/login");
+    if(!token) return res.redirect("/auth/login");
     const decode = await jwt.verify(token, process.env.JWT_SECRET);
     const user = await users.findById(decode.id);
     if(!user) return next(new errorRespose(400,"user invalid"));
