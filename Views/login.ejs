@@ -14,6 +14,7 @@
             align-items: center;
             background-color: rgb(222, 222, 224);
         }
+        
         .loginForm{        
             height:520px;     
             padding: 0px 40px;
@@ -67,8 +68,8 @@
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                <br/><i>Bạn chưa có tài khoản? <a href="<%= process.env.API %>/auth/signup">Đăng kí ngay</a></i> <br/>
-                <i>Bạn quên mật khẩu? <a href="<%= process.env.API %>/auth/forgotPassword">Quên mật khẩu</a></i>
+                <br/><i>Bạn chưa có tài khoản? <a href="/auth/signup">Đăng kí ngay</a></i> <br/>
+                <i>Bạn quên mật khẩu? <a href="/auth/forgotPassword">Quên mật khẩu</a></i>
             </form>
         </div>                      
     </div>

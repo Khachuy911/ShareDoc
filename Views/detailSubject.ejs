@@ -52,8 +52,8 @@
     <div class="menu">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid ">
-              <a href="<%= process.env.API %>/subject/"><img src="https://cdn-icons-png.flaticon.com/512/3068/3068327.png" alt="" width="60" height="60" class="d-inline-block align-text-top"></a> 
-              <a class="title" href="<%= process.env.API %>/subject/">ShaDoc</a>
+              <a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3068/3068327.png" alt="" width="60" height="60" class="d-inline-block align-text-top"></a> 
+              <a class="title" href="/">ShaDoc</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="">Trang Chủ</a>
@@ -75,7 +75,7 @@
                                 Tài Khoản
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
-                              <li><a class="dropdown-item" href="<%= process.env.API %>/user">Hồ sơ</a></li>
+                              <li><a class="dropdown-item" href="/user">Hồ sơ</a></li>
                               <li><a class="dropdown-item" href="#">Tài liệu của tôi</a></li>
                               <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
                               <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
@@ -269,10 +269,10 @@
         <div class="main2">
             <h1>📖Môn Học: <%= data.name %></h1>
             <p>Mô Tả: <%= data.introduce %></p>
-            <a href="<%= process.env.API %>/subject/"><button class="btn btn-secondary">◂Quay lại</button></a>
-            <a href="<%= process.env.API %>/document/<%= data.id%>"><button type="button" class="btn btn-primary"> 📚 Đề kiểm tra</button></a>
-            <a href="<%= process.env.API %>/exam/<%= data.id%>"><button type="button" class="btn btn-primary">📰 Đề thi</button></a>
-            <a href="<%= process.env.API %>/project/<%= data.id%>"><button type="button" class="btn btn-primary">📙 Bài tập lớn</button></a>            
+            <a href="/"><button class="btn btn-secondary">◂Quay lại</button></a>
+            <a href="/document/<%= data.id%>"><button type="button" class="btn btn-primary"> 📚 Đề kiểm tra</button></a>
+            <a href="/exam/<%= data.id%>"><button type="button" class="btn btn-primary">📰 Đề thi</button></a>
+            <a href="/project/<%= data.id%>"><button type="button" class="btn btn-primary">📙 Bài tập lớn</button></a>            
             <hr/>
             <div class="entertaiment"><div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-indicators">
@@ -298,6 +298,7 @@
               <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
+                
               </button>
             </div>
             </div>

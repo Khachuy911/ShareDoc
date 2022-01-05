@@ -10,6 +10,7 @@
         body{
             background-color: rgb(228, 228, 228);
         }
+        
         .title{
             font-size: 40px;
             color: white ;
@@ -49,11 +50,11 @@
   <div class="menu">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid ">
-        <a href="<%= process.env.API %>/subject/"><img src="https://cdn-icons-png.flaticon.com/512/3068/3068327.png" alt="" width="60" height="60" class="d-inline-block align-text-top"></a> 
-        <a class="title" href="<%= process.env.API %>/subject/">ShaDoc</a>
+        <a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3068/3068327.png" alt="" width="60" height="60" class="d-inline-block align-text-top"></a> 
+        <a class="title" href="/">ShaDoc</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="<%= process.env.API %>/subject/">Trang Chủ</a>
+                <a class="nav-link active" aria-current="page" href="/">Trang Chủ</a>
                 <a class="nav-link" href="">Số người dùng</a>
                 <a class="nav-link" href="">Góp ý</a>
                 <a class="nav-link" href="">Hỗ Trợ</a>
@@ -72,9 +73,9 @@
                             Tài Khoản
                         </a>
                         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
-                          <li><a class="dropdown-item" href="<%= process.env.API %>/user">Hồ sơ</a></li>
+                          <li><a class="dropdown-item" href="/user">Hồ sơ</a></li>
                           <li><a class="dropdown-item" href="#">Tài liệu của tôi</a></li>
-                          <li><a class="dropdown-item" href="<%= process.env.API %>/auth/login">Đăng nhập</a></li>
+                          <li><a class="dropdown-item" href="/auth/login">Đăng nhập</a></li>
                           <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
                         </ul>
                       </li>
@@ -268,10 +269,10 @@
                 <h1>📙Bài tập lớn: <%= data[1].name %></h1>  
               <%}else{%>  
                 <h1>📙Bài tập lớn: Rỗng 🤯</h1>
-                <p>Hãy tạo một tài liệu mới, bằng cách ấn vào nút <a href="<%= process.env.API %>/project/create/<%= data[0].id %>">tạo mới</a> </p> 
+                <p>Hãy tạo một tài liệu mới, bằng cách ấn vào nút <a href="/project/create/<%= data[0].id %>">tạo mới</a> </p> 
                 <%}%>       
-              <a href="<%= process.env.API %>/subject/<%= data[0].id%>"><button type="reset" class="btn btn-secondary">◂Quay lại</button></a>
-              <a href="<%= process.env.API %>/project/create/<%= data[0].id %>"><button type="button" class="btn btn-success">Tạo Mới</button></a>            
+              <a href="/<%= data[0].id%>"><button type="reset" class="btn btn-secondary">◂Quay lại</button></a>
+              <a href="/project/create/<%= data[0].id %>"><button type="button" class="btn btn-success">Tạo Mới</button></a>            
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -290,7 +291,7 @@
                         <td width="450px"><%= data[i].introduce %></td>
                         <td width="200px"><a href="http://localhost:5000/<%=data[i].user.avatar%>"><img src="http://localhost:5000/<%=data[i].user.avatar%>" alt="" width="25" height="25" class="d-inline-block align-text-top"></a> <%= data[i].user.name %></td>
                         <td width="100px"><%= data[i].publish_Year %></td>
-                        <td><a href="<%= process.env.API %>/project/detailPro/<%= data[i].id%>"><button type="button" class="btn btn-primary">Truy cập</button></a> </td>
+                        <td><a href="/project/detailPro/<%= data[i].id%>"><button type="button" class="btn btn-primary">Truy cập</button></a> </td>
                     </tr>
                         <%}%>
                 </tbody>

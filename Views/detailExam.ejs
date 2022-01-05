@@ -9,6 +9,7 @@
     <style>
         body{
             background-color: rgb(228, 228, 228);
+            
         }
         .title{
             font-size: 40px;
@@ -51,11 +52,11 @@
     <div class="menu">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid ">
-                <a href="<%= process.env.API %>/subject/"><img src="https://cdn-icons-png.flaticon.com/512/3068/3068327.png" alt="" width="60" height="60" class="d-inline-block align-text-top"></a> 
-                <a class="title" href="<%= process.env.API %>/subject/">ShaDoc</a>
+                <a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3068/3068327.png" alt="" width="60" height="60" class="d-inline-block align-text-top"></a> 
+                <a class="title" href="/">ShaDoc</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="<%= process.env.API %>/subject/"">Trang Chủ</a>
+                    <a class="nav-link active" aria-current="page" href="/"">Trang Chủ</a>
                     <a class="nav-link" href="">Bài Viết</a>
                     <a class="nav-link" href="">Góp ý</a>
                     <a class="nav-link" href="">Hỗ Trợ</a>
@@ -74,7 +75,7 @@
                                 Tài Khoản
                             </a>
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
-                              <li><a class="dropdown-item" href="<%= process.env.API %>/user">Hồ sơ</a></li>
+                              <li><a class="dropdown-item" href="/user">Hồ sơ</a></li>
                               <li><a class="dropdown-item" href="#">Tài liệu của tôi</a></li>
                               <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
                               <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
@@ -267,7 +268,7 @@
     </div>
         <div class="main2">
             <h1>📰Đề thi: <%= data[0].ex.name%></h1>    
-            <a href="<%= process.env.API %>/exam/<%= data[0].ex.subject.id%>"><button style="margin-top: 20px;" class="btn btn-secondary">◂Quay lại</button></a>
+            <a href="/exam/<%= data[0].ex.subject.id%>"><button style="margin-top: 20px;" class="btn btn-secondary">◂Quay lại</button></a>
             <a href="https://mail.google.com/mail/u/0/#inbox"><button style="margin-top: 20px;" onclick="hienThi()" class="btn btn-warning">Hỗ trợ</button></a>
             <p style="margin-top: 30px;">Chi tiết: <%= data[0].ex.introduce%></p> 
             <p>Năm xuất bản: <%= data[0].ex.publish_Year%></p> 
@@ -279,7 +280,7 @@
                         <p>Tên tài liệu: <%= data[i].name%> ✔</p>
                     </div>
                     <div class="dow2">
-                        <a href="<%= process.env.API %>/exam/download?id=<%=data[i].id%>"><button type="button" class="btn btn-primary">Tải xuống</button></a>
+                        <a href="/exam/download?id=<%=data[i].id%>"><button type="button" class="btn btn-primary">Tải xuống</button></a>
                     </div>
                 </div>
                 
