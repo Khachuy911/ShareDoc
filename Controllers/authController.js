@@ -101,7 +101,7 @@ module.exports = {
         user.confirmPw = confirmPw;
         await user.save();
         let count ={err:0};
-        res.render("../Views/login.ejs", {count});
+        res.redirect("/auth/login");
         // res.status(200).json({
         //     status:"success",
         //     message: "Reset password successfully"
