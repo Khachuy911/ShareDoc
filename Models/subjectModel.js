@@ -11,5 +11,17 @@ const subjectSchema = new Schema({
 },{
     timestamps: true
 })
-
+subjectSchema.index(
+  {
+    name: "text",
+    introduce: "text",
+  },
+  {
+    weights: {
+      // độ ưu tiên, số càng cao độ ưu tiên càng lớn
+      name: 5,
+      description: 1,
+    },
+  }
+);
 module.exports = mongoose.model('subject', subjectSchema);

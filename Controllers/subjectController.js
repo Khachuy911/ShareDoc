@@ -64,5 +64,12 @@ module.exports = {
             status: "success",
             data: "edit subject success."            
         })
+    }),
+    search: asyncHandle(async(req, res, next)=>{
+        const name = req.query.search;
+    // search mongoose
+        const data = await subjects.find({ $text: { $search: name } });
+        if(data.length <= 0) return next(new errorResponse(400, "Môn học không tồn tại, bạn có thể đề nghị admin mở thêm môn."));
+        res.render("../Views/Home.ejs", {data});
     })
 }
