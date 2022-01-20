@@ -9,6 +9,10 @@ const documentDetailSchema = new Schema({
         type:String,
         required:[true, "mimetype document empty"]
     },
+    name:{
+        type:String,  
+        required:[true, "Tên không được để trống"]  
+    },
     path:{
         type:String,
         require:[true, "path document empty"]

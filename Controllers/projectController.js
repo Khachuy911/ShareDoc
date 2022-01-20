@@ -4,60 +4,78 @@ const asyncHandle = require("../Middleware/asyncHandle");
 const errorResponse = require("../Helper/errorResponse");
 const uploadFiles = require("../Common/downloadFile");
 module.exports = {
+    getCreate: asyncHandle(async(req, res, next)=>{
+        res.render("../Views/createPro.ejs");
+    }),
     create: asyncHandle(async(req, res, next)=>{
         req.body.user = req.user.id;
         req.body.subject = req.params.id;
         const data = await project.create(req.body);
         req.files.forEach(async ele => {
             let path = ele.path;
+            req.body.name = ele.originalname;
             let newPath = path.split("\\");
             req.body.path = newPath.join("/");
             req.body.pro = data._id;
             req.body.mimetype = ele.mimetype;
             const detail = await projectDetail.create(req.body);
         });        
-        res.status(201).json({
-            status:"success",
-            data: "create project success"
-        })
+        res.redirect("back");
     }),
-    get: asyncHandle(async(req, res, next)=>{
+    getAll: asyncHandle(async(req, res, next)=>{
         const data = await project.find().populate([{
             path:"user",            
-            select: "name"
         },{
             path:"subject",
-            select: "name"
         }]);
+        // res.json({
+        //     data
+        // })
+        res.render("../Views/Admin/getAllpro.ejs", {data});
+    }),
+    get: asyncHandle(async(req, res, next)=>{
+        const data = await project.find({subject: req.params.id}).populate([{
+            path:"user",            
+        },{
+            path:"subject",
+        }]);
+        const sub = {id: req.params.id}
+        data.unshift(sub);
         if(!data){
             return next(new errorResponse(401,"data empty"));
         }
-        res.status(200).json({
-            status:"success",
-            data
-        })
+        res.render("../Views/project.ejs", {data});
+        // res.status(200).json({
+        //     status:"success",
+        //     data
+        // })
     }),
     getDetail: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;
         const data = await projectDetail.find({pro: id}).populate({
             path:"pro",
+            populate:{
+                path:"subject",
+            }
         });;
         if(!data){
             return next(new errorResponse(401,"data empty"));
         }
-        res.status(200).json({
-            status:"success",
-            data
-        })
+        res.render("../Views/detailPro.ejs", {data});
+        // res.status(200).json({
+        //     status:"success",
+        //     data
+        // })
     }),
     delete: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;
         const data = await project.findByIdAndDelete(id);
         await projectDetail.deleteMany({pro: id});
-        res.status(200).json({
-            status: "success",
-            data: "delete project success."            
-        })
+        res.redirect("back");
+        // res.status(200).json({
+        //     status: "success",
+        //     data: "delete project success."            
+        // })
     }),
     edit: asyncHandle(async(req, res, next)=>{
         const id = req.params.id;

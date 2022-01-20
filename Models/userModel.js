@@ -6,12 +6,12 @@ const client = require("../Config/redis");
 const userSchema = new Schema({
   email:{
       type: String,
-      required: [true, "Email empty"],
-      unique: [true,"Email is existed"]
+      required: [true, "Email không được để trống"],
+      unique: [true,"Email đã tồn tại"]
   },
   password:{
       type: String,
-      required: [true, "password empty"],
+      required: [true, "Mật khẩu không được để trống"],
       select: false
   },
   confirmPw:{
@@ -20,7 +20,7 @@ const userSchema = new Schema({
           validator: function (el){
               return el === this.password;
           },
-          message:"password not the same"
+          message:"Mật khẩu không khớp nhau"
       }
   },
   role:{
@@ -29,19 +29,19 @@ const userSchema = new Schema({
   },
   phone:{
       type: Number,
-      required: [true, "phone empty"],
-      unique: [true, "phone number is existed"]
+      required: [true, "Số điện thoại không được để trống"],
+      unique: [true, "Số điện thoại đã tồn tại"]
   },
   avatar:{
       type: String,
   },
   name:{
       type: String,
-      required: [true, "name empty"]
+      required: [true, "Họ tên không được để trống"]
   },
-  birdDay:{
+  birthDay:{
       type: Date,
-      required:[true, "bird day empty"]
+      required:[true, "Ngày sinh không được để trống"]
   }
 },{
     timestamps : true,
@@ -60,13 +60,13 @@ userSchema.methods.signToken = function(){
         expiresIn: process.env.JWT_EXPIRES_IN
     })
 }
-userSchema.methods.signRefreshToken = async function(){
-    const refreshToken = await jwt.sign({id: this._id}, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_REFRESH_EXPIRES_IN
-    })
-    await client.set(`${this._id}`, refreshToken);
-    return refreshToken;
-}
+// userSchema.methods.signRefreshToken = async function(){
+//     const refreshToken = await jwt.sign({id: this._id}, process.env.JWT_SECRET, {
+//         expiresIn: process.env.JWT_REFRESH_EXPIRES_IN
+//     })
+//     await client.set(`${this._id}`, refreshToken);
+//     return refreshToken;
+// }
 userSchema.methods.matchPassword = function(password, hashPassword){
     return bcrypt.compare(password, hashPassword);
 }

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadoc</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/128/3068/3068327.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: rgb(228, 228, 228);
+            
+        }
+        .title{
+            font-size: 30px;
+            color: white;
+            margin-top: 10px;
+            text-decoration: none;
+            text-shadow: 1px 3px 3px black;
+        }
+        .title:hover{
+          color: white;
+          text-shadow: 1px 2px 1px rgb(90, 90, 90);
+        }
+        .collapse1{
+            margin-left: 50px;
+        }
+        .nav-link{
+            margin: 0px 20px;
+        }
+        td{
+            cursor:context-menu;
+        }
+        .session{
+            display: flex;
+            flex-direction: row;
+            width:100%;
+        }
+        .main1{
+            flex-basis: 20%;
+            /* background-color: rgb(13, 110, 253); */
+        }
+        .main2{
+            margin-left: 30px;
+            flex-basis: 80%;
+            justify-content: space-between;
+        }
+        a{
+          text-decoration: none;
+        }
+        .container{
+            border: 1px solid silver;
+            background-color: rgb(207, 204, 204);
+            height:83%;
+            width: 99%;
+            box-shadow: 0px 0px 1px 1px white;
+        }
+        .btnSend{
+          margin-top: 30px;
+          display: flex;
+          justify-content: end;
+          
+        }
+    </style>
+</head>
+<body>
+  <div class="menu">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid ">
+        <a href="/"><img src="https://cdn-icons-png.flaticon.com/512/3068/3068327.png" alt="" width="60" height="60" class="d-inline-block align-text-top"></a> 
+        <a class="title" href="/">ShaDoc</a>
+        <div class="collapse1 navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="/">Trang Chủ</a>
+                <a class="nav-link" href="/user/admin">Admin</a>
+                <a class="nav-link" href="/user/getMe">Hồ sơ</a>
+                <a class="nav-link" href="https://www.facebook.com/huy.hgs/">Hỗ Trợ</a>
+            </div>
+        </div>
+        <div class="collapse1 navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <form class="d-flex" action="/search">
+                <input class="form-control me-2" type="search" name="search" placeholder="Nhập tên môn..." aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Tìm</button>
+              </form>
+                <div class="collapse1 navbar-collapse" id="navbarNavDarkDropdown">
+                    <ul class="navbar-nav">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tài Khoản
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarDarkDropdownMenuLink">
+                          <li><a class="dropdown-item" href="/user/getMe">Hồ sơ</a></li>
+                          <li><a class="dropdown-item" href="/user/admin">Admin</a></li>
+                          <li><a class="dropdown-item" href="/auth/login">Đăng nhập</a></li>
+                          <li><a class="dropdown-item" href="/auth/logout">Đăng xuất</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </nav>
+</div>
+      <br/>
+    <div class="session">
+      <div class="main1">
+        <div class="accordion accordion-flush" id="accordionFlushExample ">
+            <div class="accordion-item ">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Web tuyển sinh
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <a href="https://timviecnhanh.com/">▷Tìm việc nhanh</a><br>
+                    <a href="https://vieclam24h.vn/">▷Việc làm 24h</a><br>
+                    <a href="https://www.topcv.vn/">▷Top CV</a>
+                    </div>                      
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Web học tập
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <a href="https://webcoban.vn/">▷Lập trình web</a><br>
+                  <a href="https://fullstack.edu.vn/">▷Khoá học Fullstack web F8</a><br>
+                  <a href="https://www.trainyouraccent.com/readings/movie-rentals">▷Tiếng anh online</a><br>
+                  <a href="https://blogdaytinhoc.com/">▷Tin học văn phòng</a><br>
+                  <a href="https://edumall.vn/lap-trinh-cntt/ngon-ngu-lap-trinh/lap-trinh-c?page=1">▷Lập trình C++ (Có phí)</a>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  Cảm hứng học tập
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  ▷Cứ để ngu dốt nói điều gì mình muốn nói, học hỏi luôn có giá trị của mình. <br>
+                  ▷Học Học Nữa, Học Mãi <br>
+                  <a href="https://quantri.donga.edu.vn/thong-tin-ct/8-cach-de-lay-lai-cam-hung-hoc-tap-24397">▷Lấy lại cảm hứng học tập</a><br/>
+                  <a href="https://quantri.donga.edu.vn/thong-tin-ct/8-cach-de-lay-lai-cam-hung-hoc-tap-24397">▷Mất cảm hứng học tập</a><br/>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingSeventeen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeventeen" aria-expanded="false" aria-controls="flush-collapseSeventeen">
+                  Liên hệ quảng cáo
+                </button>
+              </h2>
+              <div id="flush-collapseSeventeen" class="accordion-collapse collapse" aria-labelledby="flush-headingSeventeen" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  ▷Số điện thoại: 0339118095 <br/>
+                  ▷Facebook: <a href="https://www.facebook.com/huy.hgs/">Nguyễn Khắc Huy</a><br>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                  Tư vấn học tập
+                </button>
+              </h2>
+              <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  << Đang phát triển >> <br>
+                  ▷Tương lai Shadoc sẽ thuê một số chuyên gia về lĩnh vực học tập để tư vấn. 
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                  Thuê giải đề thi
+                </button>
+              </h2>
+              <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                   << Đang phát triển >> <br>
+                   ▷Người thuê giải đề sẽ phải bỏ ra 1 số chi phí để được người đăng kí giải đề tiếp nhận và xử lí.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                  Đăng kí giải đề
+                </button>
+              </h2>
+              <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  << Đang phát triển >> <br>
+                  ▷Chức năng đăng kí giải đề: người đăng kí sẽ giải đề được đăng tải trên Shadoc, chi phí tuỳ thuộc vào độ khó của đề.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSeven" aria-expanded="false" aria-controls="flush-collapseSeven">
+                  Góp ý
+                </button>
+              </h2>
+              <div id="flush-collapseSeven" class="accordion-collapse collapse" aria-labelledby="flush-headingSeven" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  ▷Facebook: <a href="https://www.facebook.com/huy.hgs/">Góp ý ngay</a><br>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEight" aria-expanded="false" aria-controls="flush-collapseEight">
+                  Hộp nhạc học tập
+                </button>
+              </h2>
+              <div id="flush-collapseEight" class="accordion-collapse collapse" aria-labelledby="flush-headingEight" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <a href="https://www.youtube.com/watch?v=47vIrYHU46s">▷Hộp nhạc 1</a><br>
+                  <a href="https://www.youtube.com/watch?v=64aNeYsa6Iw">▷Hộp nhạc 2</a><br>
+                  <a href="https://www.youtube.com/watch?v=BNGBDIH-Rfg">▷Hộp nhạc 3</a><br>
+                  <a href="https://www.youtube.com/watch?v=wLXFynJCoF4">▷Hộp Nhạc 4</a><br>
+                  <a href="https://www.youtube.com/watch?v=TURbeWK2wwg">▷Hộp Nhạc 5</a><br>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                  5 Điều Bác Hồ Dạy
+                </button>
+              </h2>
+              <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  ▷Yêu Tổ quốc, yêu đồng bào. <br/>
+                  ▷Học tập tốt, lao động tốt. <br/>
+                  ▷Đoàn kết tốt, kỷ luật tốt. <br/>
+                  ▷Giữ gìn vệ sinh thật tốt. <br/>
+                  ▷Khiêm tốn, thật thà, dũng cảm. <br/>                      
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTen" aria-expanded="false" aria-controls="flush-collapseTen">
+                  Hỗ trợ sử dụng
+                </button>
+              </h2>
+              <div id="flush-collapseTen" class="accordion-collapse collapse" aria-labelledby="flush-headingTen" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <a href="https://mail.google.com/">▷Nhắn tin email ngay</a><br>
+                  <a href="https://www.facebook.com/huy.hgs/">▷Nhắn tin facebook ngay</a><br>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingeleven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseeleven" aria-expanded="false" aria-controls="flush-collapseeleven">
+                  Liên kết
+                </button>
+              </h2>
+              <div id="flush-collapseeleven" class="accordion-collapse collapse" aria-labelledby="flush-headingeleven" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <a href="https://www.facebook.com/">▷Facebook</a><br>
+                  <a href="https://chat.zalo.me/">▷Zalo</a><br>
+                  <a href="https://www.youtube.com/">▷Youtobe</a><br>
+                  <a href="https://twitter.com/?lang=vi">▷Twitter</a><br>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+        <div class="main2">
+            <hr/>
+            <h1 style="text-align: center;">📰Tạo đề thi mới</h1>
+            <hr/>
+            <div class="container">
+                <br/>
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                    <label for="exampleInputDoc" class="form-label">Tên tài liệu</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-12">
+                            <input name="name" type="text" width class="form-control" id="exampleInputDoc">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputDoc" class="form-label">Chi tiết</label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-12">                            
+                                <input name="introduce" type="text" class="form-control" id="exampleInputDoc">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputDoc" class="form-label">Năm xuất bản</label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-12">                            
+                                <input name="publish_Year" type="text" class="form-control" placeholder="2021" id="exampleInputDoc">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputDoc" class="form-label">Tệp</label>
+                        <input name="examDetail" type="file" id="exampleInputDoc" multiple>
+                    </div>    
+                    <p><i>*Chú ý: </i></p>
+                    <p><i>-Tên tệp nên viết liền, không dấu</i></p>
+                    <p><i>-Số lượng tệp <= 10 tệp</i></p>  
+                    <div class="btnSend">        
+                      <button type="reset" style="margin-right: 10px;" class="btn btn-secondary">↻ Làm mới</button>
+                      <button type="submit" style="margin-right: 30px;" onclick="hienThi()" class="btn btn-primary">Tạo mới</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script>
+      function hienThi(){
+        alert("Quá trình tạo mới sẽ diễn ra trong 10s 😉");
+      }
+    </script>
+</body>
+</html>

@@ -12,8 +12,8 @@ module.exports = (option)=>{
       var mailOptions = {
         from: process.env.MY_EMAIL,
         to: option.email,
-        subject: 'Forgot password on ShareDocs website',
-        text: `Click link here to reset password:  ${option.link}`
+        subject: 'ShaDoc',
+        text: `Ấn vào đường đường dẫn để lấy lại mật khẩu (Đường dẫn tồn tại trong 15 phút):  ${option.link}`
       };
       
       transporter.sendMail(mailOptions, function(error, info){

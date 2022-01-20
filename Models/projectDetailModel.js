@@ -7,7 +7,11 @@ const projectDetailSchema = new Schema({
     },
     mimetype:{
         type:String,
-        require:[true, "mimefile project empty"]
+        require:[true, "mimetype project empty"]
+    },
+    name:{
+        type:String,  
+        required:[true, "Tên không được để trống"]  
     },
     path:{
         type:String,
