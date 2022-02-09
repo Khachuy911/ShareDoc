@@ -11,7 +11,6 @@ module.exports = {
         req.body.user = req.user.id;
         req.body.subject = req.params.id;
         const data = await document.create(req.body);
-        console.log(req.files);
         req.files.forEach(async ele => {
             let path = ele.path;
             req.body.name = ele.originalname;
